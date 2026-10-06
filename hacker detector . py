@@ -1,0 +1,33 @@
+
+# Hacker Detection Tool - By Vincent Nyerere
+# CBE BSc IT | 0793641536 | Built on Infinix Hot 50
+
+print("=== VINCENT NYERERE - HACKER DETECTION ===")
+print("Scanning system logs...\n")
+
+logs = [
+    "User admin login success IP: 192.168.1.1",
+    "Failed login IP: 192.168.1.100",
+    "Failed login IP: 192.168.1.100",
+    "Failed login IP: 192.168.1.100",
+    "Failed login IP: 10.0.0.50",
+    "Failed login IP: 192.168.1.100",
+    "Failed login IP: 192.168.1.100"
+]
+
+from collections import Counter
+counts = Counter()
+
+for log in logs:
+    if "Failed" in log:
+        ip = log.split("IP: ")[1]
+        counts[ip] += 1
+
+print("Results:")
+for ip, num in counts.items():
+    if num >= 3:
+        print(f"[!] ALERT! Hacker IP: {ip} - Tried {num} times - BLOCK IT!")
+    else:
+        print(f"[+] IP {ip} - {num} tries - OK")
+
+print("\nScan complete! By Vincent - github.com/vincentnyerere4-coder")
